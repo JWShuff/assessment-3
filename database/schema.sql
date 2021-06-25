@@ -23,6 +23,7 @@ create table products (
     id serial primary key,
     name varchar(20) NOT NULL,
     description varchar(255) NOT NULL,
+    price numeric not null,
     category_id integer not null --fk to categories.id
 );
 
