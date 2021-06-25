@@ -11,11 +11,11 @@ drop table if exists categories cascade;
 drop table if exists orders cascade;
 drop table if exists addresses cascade;
 drop table if exists orders_customers cascade;
+drop table if exists orders_products cascade;
 
 create table orders (
     id serial primary key,
     date_placed date NOT NULL,
-    product_id integer not null, --fk to products.id ordered
     address_id integer not null
 );
 
@@ -56,10 +56,13 @@ create table orders_customers (
     customer_id integer not null --fk to customers.id
 );
 
-ALTER TABLE orders
-    ADD CONSTRAINT fk_orders_product_id 
-    FOREIGN KEY(product_id) 
-    REFERENCES products (id);
+--orders/products join table
+create table orders_products (
+    id serial primary key,
+    order_id integer not null, --fk to orders.id
+    product_id integer not null -- fk to products.id
+);
+
 ALTER TABLE orders_customers
     ADD CONSTRAINT fk_ordcust_customer_id
     FOREIGN KEY(customer_id) 
@@ -68,6 +71,14 @@ ALTER TABLE orders_customers
     ADD CONSTRAINT fk_ordcust_order_id 
     FOREIGN KEY(order_id) 
     REFERENCES orders (id);
+ALTER TABLE orders_products
+    ADD CONSTRAINT fk_ordprod_order_id 
+    FOREIGN KEY(order_id) 
+    REFERENCES orders (id);
+ALTER TABLE orders_products
+    ADD CONSTRAINT fk_ordprod_product_id 
+    FOREIGN KEY(product_id) 
+    REFERENCES products (id);
 ALTER TABLE orders
     ADD CONSTRAINT fk_orders_address_id 
     FOREIGN KEY(address_id) 
