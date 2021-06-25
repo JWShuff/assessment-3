@@ -65,8 +65,84 @@ values ('Mirror', 'To introspect.', 4);
 
 -- Orders
 insert into orders (date_placed, address_id)
-values ('2020-07-26', 1);
+values ('2020-12-31', 1); 
+
+insert into orders (date_placed, address_id)
+values ('2020-01-10', 2);
+
+insert into orders (date_placed, address_id)
+values ('2020-10-30', 3);
+
+insert into orders (date_placed, address_id)
+values ('2019-07-26', 1);
+insert into orders (date_placed, address_id)
+values ('2019-07-26', 2); 
+insert into orders (date_placed, address_id)
+values ('2019-07-26', 3);
+
+insert into orders (date_placed, address_id)
+values ('2021-05-26', 1);
+insert into orders (date_placed, address_id)
+values ('2021-05-26', 2);
+insert into orders (date_placed, address_id)
+values ('2021-05-26', 3);
 
 --Customers
+INSERT INTO customers (first_name, last_name, email, address_id) 
+VALUES ('Tim', 'Shuff', 'nottimshuff@gmail.com', 1);
+
+INSERT INTO customers (first_name, last_name, email, address_id)
+VALUES ('Hiram', 'Felton', 'Gamefuel@outlook.com', 2);
+
+INSERT INTO customers (first_name, last_name, email, address_id)
+VALUES ('Rosalynd', 'Bricker', 'Lexishin@hotmail.com', 3);
 
 -- Orders/Customers Join
+insert into orders_customers (order_id, customer_id)
+values (1, 1);
+insert into orders_customers (order_id, customer_id)
+values (2, 2);
+insert into orders_customers (order_id, customer_id)
+values (3, 3);
+
+insert into orders_customers (order_id, customer_id)
+values (4, 1);
+insert into orders_customers (order_id, customer_id)
+values (5, 2);
+insert into orders_customers (order_id, customer_id)
+values (6, 3);
+
+insert into orders_customers (order_id, customer_id)
+values (7,1);
+insert into orders_customers (order_id, customer_id)
+values (8,2);
+insert into orders_customers (order_id, customer_id)
+values (9,3);
+
+-- Orders/Products Join
+insert into orders_products(product_id, order_id)
+values(1,1);
+insert into orders_products(product_id, order_id)
+values(4, 1);
+insert into orders_products(product_id, order_id)
+values(7, 1);
+insert into orders_products(product_id, order_id)
+values(10, 1);
+
+insert into orders_products(product_id, order_id)
+values(2, 2);
+insert into orders_products(product_id, order_id)
+values(5, 2);
+insert into orders_products(product_id, order_id)
+values(8, 2);
+insert into orders_products(product_id, order_id)
+values(11, 2);
+
+insert into orders_products(product_id, order_id)
+values(3, 3);
+insert into orders_products(product_id, order_id)
+values(6, 3);
+insert into orders_products(product_id, order_id)
+values(9, 3);
+insert into orders_products(product_id, order_id)
+values(12,3);
