@@ -13,6 +13,9 @@ values ('Kitchen', 'Risky theft opportunities given the usually armed status of 
 insert into categories(name, description)
 values ('Bed and Bath', 'Like taking candy from the defenseless, because they are.');
 
+insert into categories(name, description)
+values ('Clearance', 'For when the store inventory is simply too high for regional management.');
+
 -- Addresses:
 INSERT INTO addresses (line_1, line_2, city, state, zip) 
 VALUES ('6500 S. Webster Ave.', 'Unit 5', 'Oakland', 'CA', '94605' );
@@ -22,6 +25,9 @@ VALUES ('9 Endrus Rd.', 'Unit 2', 'Wasaga Beach', 'OR', '97420');
 
 INSERT INTO addresses (line_1, city, state, zip) 
 VALUES ('45 S. Main St.', 'Houston', 'TX', '78453');
+
+INSERT INTO addresses (line_1, city, state, zip)
+VALUES ('91180 Grinell Boulevard', 'Coos Bay', 'OR', '97420');
 
 insert into addresses (line_1, line_2, city, state, zip)
 values('Rabbit Warren #30', 'C/O The Law Dogs', 'Albuequrque', 'NM', '00000');
@@ -106,10 +112,10 @@ INSERT INTO customers (first_name, last_name, email, address_id)
 VALUES ('Rosalynd', 'Bricker', 'Lexishin@hotmail.com', 3);
 
 INSERT INTO customers (first_name, last_name, email, address_id)
-VALUES ('Gmail', 'Lover', 'AccountID1@gmail.com', 1);
+VALUES ('Gmail', 'Lover', 'AccountID1@gmail.com', 4);
 
 insert into customers (first_name, last_name, email, address_id)
-values ('Bugs', 'Bunny', 'WhoEvenOwnsThisIPAnyway@notwarner.com', 4);
+values ('Bugs', 'Bunny', 'WhoEvenOwnsThisIPAnyway@notwarner.com', 5);
 
 -- Orders/Customers Join
 insert into orders_customers (order_id, customer_id)
