@@ -13,12 +13,91 @@ const productDict = {
   'mirror': ["Mirror", 75.00]
 }
 
+// formats price data to USD style presentation
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
 });
 
-var shoppingCart = []
+// Gets page html for shoppingcart check
+function getPageName(url) {
+  return url.split('/').pop().split('.')[0];
+}
+
+var shoppingCart = [];
+
+// Builds and displays the empty cart notification in lieu of cart display
+
+const loadShoppingCart = () => {
+  // load shopping cart from localStorage
+  shoppingCart = JSON.parse(localStorage.getItem('cart'));
+
+  // In the event localStorage is null, set shoppingCart to empty array
+  if(shoppingCart == null) {
+    shoppingCart = [];
+  }
+  // if no items in shopping cart, display empty cart notification:
+  console.log(`shopping cart is: ${shoppingCart}`)
+  // If on the shopping cart page (uniquely contains cart div)
+  // generate the shopping cart and display it or empty cart message
+  if(getPageName(location.href) == 'shoppingcart') {
+    return createShoppingCart();
+  }
+  return(shoppingCart)
+}
+
+const createShoppingCart = () => {
+  // if cart is empty:
+  if(shoppingCart == null || shoppingCart.length == 0) {
+    return emptyCartNotification()
+  }
+
+  // if items in shopping cart check if empty cart notification is up:
+  if (document.body.contains(document.getElementById('empty-cart-notif'))) {
+    document.getElementById('empty-cart-notif').remove();
+  }
+  let cartDiv = document.getElementById('cart')
+  
+  let cartCard = document.createElement('div');
+  cartCard.setAttribute('id', 'shopping-cart-card')
+  cartCard.setAttribute('style', 'width: 24rem')
+  cartCard.setAttribute('class', 'card col-md-2')
+  
+  let cartCardBody = document.createElement('div');
+  cartCardBody.setAttribute('class', 'card-body');
+  
+  
+  let cartCardTitle = document.createElement('h5');
+  cartCardTitle.setAttribute('class', 'card-title');
+  let cartTitleText = "Your shopping cart contains: <hr>";
+  
+  let cartListParent = document.createElement('div');
+  
+  for (let i = 0; i < shoppingCart.length; i++) {
+    console.log(shoppingCart[i])
+    let cartProductName = document.createElement('p');
+    cartProductName.setAttribute('class', 'card-text my-2')
+    
+    let cartProductPrice = document.createElement('p');
+    cartProductPrice.setAttribute('class', 'card-text my-2')
+    
+    // Set name and price from shopping cart array loaded from localStorage.
+    cartProductName.innerHTML = shoppingCart[i][0];
+    //Use the above defined formatter to properly list values.
+    cartProductPrice.innerHTML = formatter.format(shoppingCart[i][1]);
+    
+    cartListParent.appendChild(cartProductName)
+    cartListParent.appendChild(cartProductPrice);
+  }
+  cartCardBody.appendChild(cartCardTitle).innerHTML = cartTitleText;
+  cartCardBody.appendChild(cartListParent);
+  cartCard.appendChild(cartCardBody)
+  cartDiv.appendChild(cartCard)
+  console.log(shoppingCart)
+  
+  //  let listParent = document.createElement('div')
+  // listParent.setAttribute('id', `card-${id}`)
+}
 
 const emptyCartNotification = () => {
   alert("Your cart is empty!")
@@ -44,70 +123,17 @@ const emptyCartNotification = () => {
   return cartDiv.appendChild(emptyCart);
 }
 
-const loadShoppingCart = () => {
-  // load shopping cart from localStorage
-  shoppingCart = JSON.parse(localStorage.getItem('cart'));
-  // if no items in shopping cart, display empty cart notification:
-  if(shoppingCart === null) {
-    return emptyCartNotification()
-  }
-  // if items in shopping cart check if empty cart notification is up:
-  if (document.body.contains(document.getElementById('empty-cart-notif'))) {
-    document.getElementById('empty-cart-notif').remove();
-  }
-  let cartDiv = document.getElementById('cart')
-
-  let cartCard = document.createElement('div');
-  cartCard.setAttribute('id', 'shopping-cart-card')
-  cartCard.setAttribute('style', 'width: 24rem')
-  cartCard.setAttribute('class', 'card col-md-2')
-
-  let cartCardBody = document.createElement('div');
-  cartCardBody.setAttribute('class', 'card-body');
-
-
-  let cartCardTitle = document.createElement('h5');
-  cartCardTitle.setAttribute('class', 'card-title');
-  let cartTitleText = "Your shopping cart contains: <hr>";
-
-  let cartListParent = document.createElement('div');
-  
-  for (let i = 0; i < shoppingCart.length; i++) {
-    console.log(shoppingCart[i])
-    let cartProductName = document.createElement('p');
-    cartProductName.setAttribute('class', 'card-text my-2')
-    
-    let cartProductPrice = document.createElement('p');
-    cartProductPrice.setAttribute('class', 'card-text my-2')
-
-    // Set name and price from shopping cart array loaded from localStorage.
-    cartProductName.innerHTML = shoppingCart[i][0];
-    //Use the above defined formatter to properly list values.
-    cartProductPrice.innerHTML = formatter.format(shoppingCart[i][1]);
-
-    cartListParent.appendChild(cartProductName)
-    cartListParent.appendChild(cartProductPrice);
-  }
-  cartCardBody.appendChild(cartCardTitle).innerHTML = cartTitleText;
-  cartCardBody.appendChild(cartListParent);
-  cartCard.appendChild(cartCardBody)
-  cartDiv.appendChild(cartCard)
-  console.log(shoppingCart)
-
-  //  let listParent = document.createElement('div')
-  // listParent.setAttribute('id', `card-${id}`)
-}
-
-const emptyShoppingCart = () => {
+function emptyShoppingCart() {
   localStorage.clear();
   return location.reload();
 }
 
-const addToCart = (event) => {
+function addToCart(event) {
   console.log(event.id)
+  console.log(shoppingCart)
   item = productDict[event.id]
   console.log(item);
   shoppingCart.push(item);
   stringifiedList = JSON.stringify(shoppingCart)
   localStorage.setItem('cart', stringifiedList)
-} 
+}

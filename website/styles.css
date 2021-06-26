@@ -7,3 +7,10 @@
   justify-content: space-evenly;
   flex-wrap: wrap
 }
+
+/* Forces card images to uniform size, trimming bottom as need */
+.card-img-top {
+  width: 100%;
+  height: 8vw;
+  object-fit: cover;
+}

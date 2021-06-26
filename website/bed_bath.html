@@ -8,11 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <link href="styles.css" rel="stylesheet" />
-    <script src="scripts.js"></script>
+    <script src="scripts.js" defer></script>
     <title>E-Commerce Bargain Emporium!</title>
   </head>
 
-  <body>
+  <body onload="loadShoppingCart()">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
@@ -43,14 +43,36 @@
     </nav>
     <div class="container">
       <div class="row">
-        <div class="card col-sm-3" style="width: 18rem;">
-          <img class="card-img-top" src="../images/blackpen.jpg" alt="product image">
+        <div class="card col-sm-4 product-card" style="width: 18rem;">
+          <img class="card-img-top" src="../images/" alt="Apple Product where it belongs.">
           <div class="card-body">
-            <h5 class="card-title">Black Pen</h5>
+            <h5 class="card-title">Bathmat</h5>
             <p class="card-text my-2">
-              The easiest to steal ubiquitous black pen.
+              Will it Blend?
             </p>
-            <button id="blackpen" type="button" class="btn btn-secondary btn-block" onclick="addToCart(evt)">Add To
+            <button id="bathmat" type="button" class="btn btn-secondary btn-block" onclick="addToCart(bathmat)">Add To
+              Cart</button>
+          </div>
+        </div>
+        <div class="card col-sm-4 product-card" style="width: 18rem;">
+          <img class="card-img-top" src="../images/" alt="This knife is very sharp.">
+          <div class="card-body">
+            <h5 class="card-title">Lamp</h5>
+            <p class="card-text my-2">
+              You pay for the whole thing, but you only need the edge.
+            </p>
+            <button id="lamp" type="button" class="btn btn-secondary btn-block" onclick="addToCart(lamp)">Add To
+              Cart</button>
+          </div>
+        </div>
+        <div class="card col-sm-4 product-card" style="width: 18rem;">
+          <img class="card-img-top" src="../images/" alt="Water containment unit.">
+          <div class="card-body">
+            <h5 class="card-title">Towel</h5>
+            <p class="card-text my-2">
+              I think it holds water.
+            </p>
+            <button id="towel" type="button" class="btn btn-secondary btn-block" onclick="addToCart(towel)">Add To
               Cart</button>
           </div>
         </div>
