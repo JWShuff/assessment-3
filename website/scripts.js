@@ -56,12 +56,14 @@ const createShoppingCart = () => {
   if (document.body.contains(document.getElementById('empty-cart-notif'))) {
     document.getElementById('empty-cart-notif').remove();
   }
+  // element to insert built list and button:
   let cartDiv = document.getElementById('cart')
   
+  // set up for shopping list card:
   let cartCard = document.createElement('div');
   cartCard.setAttribute('id', 'shopping-cart-card')
-  cartCard.setAttribute('style', 'width: 24rem')
-  cartCard.setAttribute('class', 'card col-md-2')
+  // cartCard.setAttribute('style', 'width: 24rem')
+  cartCard.setAttribute('class', 'card col-sm-9') // level 1 row
   
   let cartCardBody = document.createElement('div');
   cartCardBody.setAttribute('class', 'card-body');
@@ -72,7 +74,12 @@ const createShoppingCart = () => {
   let cartTitleText = "Your shopping cart contains: <hr>";
   
   let cartListParent = document.createElement('div');
-  
+  let cartProductNameRow = document.createElement('div');
+  cartProductNameRow.setAttribute('class', 'col-6 col-sm-2')
+  let cartProductPriceRow = document.createElement('div');
+  cartProductPriceRow.setAttribute('class', 'col-2 col-sm-2')
+
+  //build shopping cart and items:
   for (let i = 0; i < shoppingCart.length; i++) {
     console.log(shoppingCart[i])
     let cartProductName = document.createElement('p');
@@ -86,9 +93,18 @@ const createShoppingCart = () => {
     //Use the above defined formatter to properly list values.
     cartProductPrice.innerHTML = formatter.format(shoppingCart[i][1]);
     
-    cartListParent.appendChild(cartProductName)
-    cartListParent.appendChild(cartProductPrice);
+    /**
+     * Create product row with class to nest inside card col
+     * create price row with class to nest next to product row
+     * append the two nested rows to cartlistparent?
+     */
+    cartProductNameRow.appendChild(cartProductName);
+    cartProductPriceRow.appendChild(cartProductPrice);
+    cartListParent.appendChild(cartProductNameRow);
+    cartListParent.appendChild(cartProductPriceRow)
   }
+
+
   cartCardBody.appendChild(cartCardTitle).innerHTML = cartTitleText;
   cartCardBody.appendChild(cartListParent);
   cartCard.appendChild(cartCardBody)

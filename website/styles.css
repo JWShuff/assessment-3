@@ -14,3 +14,8 @@
   height: 8vw;
   object-fit: cover;
 }
+
+/* Adjust spacing between product cards */
+.col-sm-4 {
+  margin: 1rem;
+}
