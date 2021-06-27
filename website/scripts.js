@@ -63,7 +63,7 @@ const createShoppingCart = () => {
   let cartCard = document.createElement('div');
   cartCard.setAttribute('id', 'shopping-cart-card')
   // cartCard.setAttribute('style', 'width: 24rem')
-  cartCard.setAttribute('class', 'card col-sm-8') // level 1 row
+  cartCard.setAttribute('class', 'card col-sm-5') // level 1 row
   
   let cartCardBody = document.createElement('div');
   cartCardBody.setAttribute('class', 'card-body');
@@ -78,15 +78,19 @@ const createShoppingCart = () => {
   //build shopping cart and items:
   for (let i = 0; i < shoppingCart.length; i++) {
     console.log(shoppingCart[i])
+    // create a row
     let cartListRow = document.createElement('div');
     cartListRow.setAttribute('class', 'row')
+
+    //create the subelements that split the row:
     let cartProductNameRow = document.createElement('row');
     cartProductNameRow.setAttribute('class', 'col')
     let cartProductPriceRow = document.createElement('div');
     cartProductPriceRow.setAttribute('class', 'col')
+
+    // create the text fields that go into the subelements above
     let cartProductName = document.createElement('p');
     cartProductName.setAttribute('class', 'card-text my-2')
-    
     let cartProductPrice = document.createElement('p');
     cartProductPrice.setAttribute('class', 'card-text my-2')
     
@@ -95,27 +99,31 @@ const createShoppingCart = () => {
     //Use the above defined formatter to properly list values.
     cartProductPrice.innerHTML = formatter.format(shoppingCart[i][1]);
     
-    /**
-     * Create product row with class to nest inside card col
-     * create price row with class to nest next to product row
-     * append the two nested rows to cartlistparent?
-     */
+    // append the values to their appropriate carrier:
     cartProductNameRow.appendChild(cartProductName);
     cartProductPriceRow.appendChild(cartProductPrice);
     cartListRow.appendChild(cartProductNameRow);
     cartListRow.appendChild(cartProductPriceRow);
     cartListParent.appendChild(cartListRow)
   }
+  //Add a delete list button:
+  let deleteCartButton = document.createElement('button')
+  deleteCartButton.setAttribute('type', 'button')
+  deleteCartButton.setAttribute('class', 'btn btn-danger btn-block')
+  deleteCartButton.setAttribute('style', 'margin-left: 5px')
+  deleteCartButton.innerHTML = "Empty Shopping Cart"
+  deleteCartButton.onclick = (evt) => {
+    emptyShoppingCart()
+  }
 
 
   cartCardBody.appendChild(cartCardTitle).innerHTML = cartTitleText;
   cartCardBody.appendChild(cartListParent);
   cartCard.appendChild(cartCardBody)
+  cartCard.appendChild(deleteCartButton)
   cartDiv.appendChild(cartCard)
   console.log(shoppingCart)
-  
-  //  let listParent = document.createElement('div')
-  // listParent.setAttribute('id', `card-${id}`)
+
 }
 
 const emptyCartNotification = () => {
