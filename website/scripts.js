@@ -106,7 +106,7 @@ const createShoppingCart = () => {
     cartListRow.appendChild(cartProductPriceRow);
     cartListParent.appendChild(cartListRow)
   }
-  //Add a delete list button:
+  //Add a delete cart button:
   let deleteCartButton = document.createElement('button')
   deleteCartButton.setAttribute('type', 'button')
   deleteCartButton.setAttribute('class', 'btn btn-danger btn-block')
