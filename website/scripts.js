@@ -37,7 +37,6 @@ const loadShoppingCart = () => {
     shoppingCart = [];
   }
   // if no items in shopping cart, display empty cart notification:
-  console.log(`shopping cart is: ${shoppingCart}`)
   // If on the shopping cart page (uniquely contains cart div)
   // generate the shopping cart and display it or empty cart message
   if(getPageName(location.href) == 'shoppingcart') {
@@ -122,12 +121,10 @@ const createShoppingCart = () => {
   cartCard.appendChild(cartCardBody)
   cartCard.appendChild(deleteCartButton)
   cartDiv.appendChild(cartCard)
-  console.log(shoppingCart)
 
 }
 
 const emptyCartNotification = () => {
-  alert("Your cart is empty!")
   let cartDiv = document.getElementById('cart')
   let emptyCart = document.createElement('div');
   emptyCart.setAttribute('id', 'empty-cart-notif');
@@ -139,9 +136,9 @@ const emptyCartNotification = () => {
   let emptyCartCardBody = document.createElement('div');
   emptyCartCardBody.setAttribute('class', 'card-body');
 
-  let emptyCartCardTitle = document.createElement('h2');
+  let emptyCartCardTitle = document.createElement('h3');
   emptyCartCardTitle.setAttribute('class', 'card-title')
-  let cardTitleText = "Your cart is empty!"
+  let cardTitleText = "Your shopping cart is empty!"
 
   emptyCartCardBody.appendChild(emptyCartCardTitle).innerHTML = cardTitleText;
   emptyCartCard.appendChild(emptyCartCardBody)
@@ -156,10 +153,7 @@ function emptyShoppingCart() {
 }
 
 function addToCart(event) {
-  console.log(event.id)
-  console.log(shoppingCart)
   item = productDict[event.id]
-  console.log(item);
   shoppingCart.push(item);
   stringifiedList = JSON.stringify(shoppingCart)
   localStorage.setItem('cart', stringifiedList)

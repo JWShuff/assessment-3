@@ -1,5 +1,6 @@
 .body {
-  background-color: #303030;
+  background-color: #747474;
+  background: local;
 }
 
 .card {
@@ -18,4 +19,11 @@
 /* Adjust spacing between product cards */
 .col-sm-4 {
   margin: 1rem;
+  border: solid 4px #747474;
+}
+
+#landingpage {
+  background-image: url("../images/indexbackground.jpg"), url("paper.gif");
+  background-size: 200vh;
+  background-repeat: repeat-x;
 }
