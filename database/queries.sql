@@ -10,8 +10,8 @@ where email ilike '%@gmail.com';
 --   2. Retrieve the address of the customers and the order IDs for all orders that were placed in 2020
 select C.first_name,
     C.last_name,
-    A.*, 
-    O.id, 
+    A.line_1, A.line_2, A.city, A.state, A.zip, 
+    O.id as "order id", 
     O.date_placed
 from orders as O
     left join addresses as A on O.address_id = A.id
