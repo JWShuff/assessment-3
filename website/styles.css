@@ -14,7 +14,13 @@
 /* Adjust spacing between product cards */
 .col-sm-4 {
   margin: 1rem;
-  border: solid 4px #757575;
+  border: solid 4px #101010;
+  border-radius: 2%;
+}
+
+#shopping-cart-card {
+  border: solid 4px #000;
+  border-radius: 2%;
 }
 
 #landingpage {
